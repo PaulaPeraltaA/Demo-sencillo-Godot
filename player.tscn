@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1nhrsioku7mw"]
+
+[ext_resource type="Texture2D" uid="uid://pqdlt84psf1k" path="res://player1.png" id="1_atmvx"]
+[ext_resource type="Script" path="res://player.gd" id="1_av4qp"]
+[ext_resource type="Texture2D" uid="uid://v40x3webd6r" path="res://player2.png" id="2_uu7o3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_es7l0"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_atmvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uu7o3")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_orwsu"]
+radius = 7.07107
+
+[node name="Player" type="Area2D" groups=["player"]]
+position = Vector2(21, 31)
+script = ExtResource("1_av4qp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7.5, 7)
+scale = Vector2(1.9375, 1.875)
+sprite_frames = SubResource("SpriteFrames_es7l0")
+animation = &"new_animation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D"]
+position = Vector2(-0.258064, 0)
+shape = SubResource("CircleShape2D_orwsu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://v5wrub7nqcnl"]
+
+[ext_resource type="Script" path="res://Bullet.gd" id="1_nu26d"]
+[ext_resource type="Texture2D" uid="uid://dud3wy42l63e" path="res://shot2.png" id="2_abrq7"]
+[ext_resource type="Texture2D" uid="uid://cvd3nb6h67uj1" path="res://shot1.png" id="3_s63jv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbffa"]
+size = Vector2(20, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o51pd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_abrq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s63jv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_nu26d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(22, 9)
+shape = SubResource("RectangleShape2D_qbffa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(22, 9)
+scale = Vector2(1.75, 1.4375)
+sprite_frames = SubResource("SpriteFrames_o51pd")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

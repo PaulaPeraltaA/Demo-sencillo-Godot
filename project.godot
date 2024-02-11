@@ -11,5 +11,17 @@ config_version=5
 [application]
 
 config/name="Demo"
+run/main_scene="res://stage_1.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Stage1="*res://stage_1.gd"
+
+[display]
+
+window/size/viewport_width=500
+window/size/viewport_height=380
+window/size/initial_position=Vector2i(1280, 720)
+window/stretch/aspect="expand"
